@@ -10,4 +10,9 @@ v2.get('/login', async (ctx, next) => {
 });
 
 
+v2.get('/register', async (ctx, next) => {
+    var result = await DB.find('test', {});
+    ctx.body = result;
+});
+
 module.exports = v2;
