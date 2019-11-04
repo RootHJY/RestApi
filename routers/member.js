@@ -47,7 +47,6 @@ member.get('/getMemberInfoForAPP', async (ctx, next) => {
 });
 
 
-
 member.post('/preRegister', async (ctx, next) => {
     let postParam = ctx.request.body;
     let username = postParam.email;
@@ -60,16 +59,18 @@ member.post('/preRegister', async (ctx, next) => {
         };
         ctx.body = r;
         return;
+    }else{
+        DB.add('member', postParam)
+        
+        let result = {
+            code: 0,
+            data: {
+                token: 'KMASJDI423KLKJSD9123KJDOWWOOMKDKASD'
+            },
+            msg: 'success'
+        }
+        ctx.body = result;
     }
-
-    let result = {
-        code: 0,
-        data: {
-            token: 'KMASJDI423KLKJSD9123KJDOWWOOMKDKASD'
-        },
-        msg: 'success'
-    }
-    ctx.body = result;
 });
 
 module.exports = member;
