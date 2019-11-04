@@ -1,5 +1,6 @@
 const Koa = require('koa');
 const path = require('path');
+const bodyParser = require('koa-bodyparser');
 const Router = require('koa-router');
 const static = require('koa-static');
 const logger = require('koa-logger');
@@ -7,9 +8,13 @@ const cors = require('koa2-cors');
 
 const app = new Koa();
 
+//解析post請求
+app.use(bodyParser());
 
 
-
+// app.use( async (ctx) => {
+//     ctx.body =  ctx.request.body
+// })
 
 app.use(cors({
     origin: function(ctx) {
@@ -31,16 +36,13 @@ app.use(cors({
 //接口地址
 const api = require('./routers/api');
 const v2 = require('./routers/v2');
-const auth = require('./routers/auth');
 const member = require('./routers/member');
 const base = require('./routers/base');
 
 
 const staticPath = '../static';
 
-
 app.use(logger())
-
 
 app.use(static(
     path.join(__dirname, staticPath)
@@ -52,7 +54,6 @@ let router = new Router();
 
 router.use('/api', api.routes(), api.allowedMethods());
 router.use('/v2', v2.routes(), v2.allowedMethods());
-router.use('/auth', auth.routes(), auth.allowedMethods());
 router.use('/member', member.routes(), member.allowedMethods());
 router.use('/base', base.routes(), base.allowedMethods());
 

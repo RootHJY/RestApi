@@ -1,7 +1,6 @@
 const Router = require('koa-router');
 const DB = require('../mongo/db.js');
 
-
 let member = new Router();
 
 member.post('/login', async (ctx, next) => {
@@ -49,8 +48,27 @@ member.get('/getMemberInfoForAPP', async (ctx, next) => {
 
 
 
-member.get('/register', async (ctx, next) => {
-    var result = await DB.find('test', {});
+member.post('/preRegister', async (ctx, next) => {
+    let postParam = ctx.request.body;
+    let username = postParam.email;
+    var hasUser = await DB.find('member', { username });
+
+    if(hasUser[0]){
+        let r = {
+            code: 1101,
+            mgs: '用户名已存在',
+        };
+        ctx.body = r;
+        return;
+    }
+
+    let result = {
+        code: 0,
+        data: {
+            token: 'KMASJDI423KLKJSD9123KJDOWWOOMKDKASD'
+        },
+        msg: 'success'
+    }
     ctx.body = result;
 });
 
