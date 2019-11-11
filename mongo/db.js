@@ -53,7 +53,7 @@ class Db {
         } else {// 没有用户名密码
             return new Promise((resolve, reject) => {
                 if (!this.dbClient) {
-                    mongodb.connect('mongodb://' + config.address + ':' + config.port + '/', {
+                    MongoClient.connect('mongodb://' + config.address + ':' + config.port + '/', {
                         useNewUrlParser: true
                     }, (err, client) => {
                         if (!err) {

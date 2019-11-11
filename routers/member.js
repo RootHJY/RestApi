@@ -49,12 +49,12 @@ member.get('/getMemberInfoForAPP', async (ctx, next) => {
 
 member.post('/preRegister', async (ctx, next) => {
     let postParam = ctx.request.body;
-    let username = postParam.email;
-    var hasUser = await DB.find('member', { username });
+    let email = postParam.email;
+    var hasUser = await DB.find('member', { email });
 
     if(hasUser[0]){
         let r = {
-            code: 1101,
+            code: 10012,
             mgs: '用户名已存在',
         };
         ctx.body = r;

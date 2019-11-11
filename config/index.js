@@ -1,6 +1,6 @@
 module.exports = {
     // 地址
-    address: '127.0.0.1',
+    address: 'localhost',
     // 端口
     port: '27017',
     // 数据库
