@@ -93,18 +93,7 @@ base.get('/queryQuotationByMarket', async (ctx, next) => {
     var result = await DB.find('mock', {});
     ctx.body = {
         code : 0,
-        data: [{
-            coinCode: 'BTC',
-            label: 'BTC'
-        },
-        {
-            coinCode: 'ETH',
-            label: 'ETH'
-        },
-        {
-            coinCode: 'EOS',
-            label: 'EOS'
-        }]
+        data: []
     };
 });
 
@@ -112,18 +101,7 @@ base.get('/queryQuotationByContracts', async (ctx, next) => {
     var result = await DB.find('mock', {});
     ctx.body = {
         code : 0,
-        data: [{
-            coinCode: 'BTC',
-            label: 'BTC'
-        },
-        {
-            coinCode: 'ETH',
-            label: 'ETH'
-        },
-        {
-            coinCode: 'EOS',
-            label: 'EOS'
-        }]
+        data: []
     };
 });
 
